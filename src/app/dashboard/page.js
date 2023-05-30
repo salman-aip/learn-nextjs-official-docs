@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import NavigationLink from "./navigation";
+import NavigationUseRouter from "./navigation-2";
 
 export default function DashboardHome() {
   return (
@@ -99,6 +100,8 @@ export default function DashboardHome() {
           Back to Home
         </Link>
       </div>
+      {/* useRouter Link */}
+      <NavigationUseRouter />
     </div>
   );
 }

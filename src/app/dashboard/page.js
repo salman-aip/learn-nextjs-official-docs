@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import NavigationLink from "./navigation";
 import NavigationUseRouter from "./navigation-2";
+import LoadingPage from "../blog/loading";
 
 export default function DashboardHome() {
   return (
@@ -9,6 +10,10 @@ export default function DashboardHome() {
       <h1>Dashboard Home Page</h1>
 
       <NavigationLink />
+      {/* loading page for blog page */}
+      <Link href="/blog/3445" className="bg-white">
+        Loadin Page to Blog page
+      </Link>
 
       <div id="A">
         Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece

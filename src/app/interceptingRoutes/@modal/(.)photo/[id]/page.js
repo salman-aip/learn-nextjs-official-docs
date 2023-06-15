@@ -10,7 +10,7 @@ import { getPhoto } from "@/lib/unsplash";
 export default function DynamicModalSinglePhoto({ params }) {
   const router = useRouter();
   const [photo, setPhoto] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   useEffect(() => {
     getPhoto(params.id).then((res) => setPhoto(res));
@@ -18,20 +18,20 @@ export default function DynamicModalSinglePhoto({ params }) {
 
   return (
     <>
-      <Dialog.Root open={true} onOpenChange={() => setIsModalOpen(!isModalOpen)}>
+      <Dialog.Root open={isModalOpen}>
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 bg-black/70" />
 
           <Dialog.DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             {/* content */}
-            <div className="mx-auto max-h-[800px] w-[600px] overflow-hidden bg-white">
+            <div className="mx-auto max-h-[800px] max-w-[800px] overflow-hidden bg-white">
               <div className="h-[600px] w-[600px]">
                 <Image
                   src={photo?.data?.urls?.regular}
                   width={600}
                   height={600}
                   alt={photo?.data?.alt_description}
-                  className="h-[750px] w-[750px] object-cover"
+                  className="h-[600px] w-[600px] object-cover"
                   priority
                 />
               </div>
@@ -51,6 +51,21 @@ export default function DynamicModalSinglePhoto({ params }) {
                 </h4>
               </div>
             </div>
+
+            <Dialog.Close
+              asChild
+              onClick={() => {
+                setIsModalOpen(false);
+                router.back();
+              }}
+            >
+              <button
+                className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
+                aria-label="Close"
+              >
+                X
+              </button>
+            </Dialog.Close>
           </Dialog.DialogContent>
         </Dialog.Portal>
       </Dialog.Root>

@@ -1,8 +1,22 @@
+import { cookies, headers } from "next/dist/client/components/headers";
 import { NextResponse } from "next/server";
 
-export const GET = async () => {
+export const GET = async (request) => {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  const cookieStore = cookies();
+  const token = cookieStore.get("token");
+  const token2 = request.cookies.get("token");
+
+  const headersList = headers();
+  const referer = headersList.get("referer");
+
+  console.log(searchParams, id, cookieStore.token, token2, headersList, referer);
+
   const res = await fetch(
     "https://api.unsplash.com/photos/?client_id=9LshQR5BF1bI7agAqN_T_E5jHp5fXxkP16opnaMWzes",
+    { next: { revalidate: 10 } },
     {
       headers: {
         "Content-Type": "application/json",

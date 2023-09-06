@@ -4,6 +4,9 @@ const nextConfig = {
     domains: ["images.unsplash.com"],
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    serverActions: true,
+  },
 };
 
 module.exports = nextConfig;

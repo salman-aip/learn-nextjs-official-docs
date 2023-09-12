@@ -16,6 +16,16 @@ export default function Optimization() {
           height: "auto",
         }}
       />
+
+      <div>Fill Container Image</div>
+      <Image
+        src={img}
+        alt={"responsive image"}
+        sizes="(min-width: 500px) 50vw, 100vw"
+        style={{
+          objectFit: "contain",
+        }}
+      />
     </div>
   );
 }
